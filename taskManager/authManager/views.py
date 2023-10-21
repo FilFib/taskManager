@@ -6,6 +6,7 @@ from .utils import check_email
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -66,7 +67,7 @@ def login_user(request):
                 error = f'User with username: {username} does not exist.'
             return render(request, 'login_user.html', {'form': AuthenticationForm(), 'error':error}) 
 
-
+@login_required
 def logout_user(request):
     logout(request)
     return redirect('home')

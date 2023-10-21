@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 
-{% block content %}
+
+{% if error %}
+    <h3>{{error}}</h3>    
+{% endif %}
     
+{% block content %}
+<form action="{% url 'detail' task.id %}" method = "post">
     {{form}}
+    {% csrf_token %}
+    <button type="submit">Edit</button>
+</form>
+
+<a href="{% url 'delete_task' task.id %}">Delete</a>
+<a href="{% url 'complete_task' task.id %}">Complete</a>
 
 {% endblock content %}
     
