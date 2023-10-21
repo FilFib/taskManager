@@ -6,7 +6,7 @@ class Task(models.Model):
     title = models.CharField(max_length=150)
     desc = models.TextField(blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
-    complate_date = models.DateTimeField(blank=True, null=True)
+    complete_date = models.DateTimeField(blank=True, null=True)
     importance = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

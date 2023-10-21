@@ -1,5 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Your tasks</h1>
 
-{% for task in tasks %}
-<p>{{task.title}}</p>
-{% endfor %}
+{% if current %}
+<h3>Current:</h3>
+<ul>
+
+    {% for task in current %}
+    <li><a href="{% url 'detail' task.id %}">{{task.title}}</a></li>
+    {% endfor %}
+
+</ul>
+{% endif %}
+
+
+{% if completed %}
+<h3>Completed:</h3>
+<ul>
+
+    {% for task in completed %}
+    <li><a href="{% url 'detail' task.id %}">{{task.title}}</a></li>
+    {% endfor %}
+
+</ul>
+{% endif %}
+
+{% endblock content %}
