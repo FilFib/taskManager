@@ -1,2 +1,23 @@
 <h1>Register</h1>
-{{form}}
+
+
+{% if password_errors %}
+<h3>There was a problem with your password:</h3>
+<ul>
+    {% for pass_err in password_errors %}
+    <li>{{pass_err}}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% if error %}
+<h3>{{error}}</h3>
+{% endif %}
+
+
+<form action="{% url 'register' %}" method="post">
+    {{form}}
+    {% csrf_token %}
+    <button type="submit">Register</button>
+</form>
